@@ -1,0 +1,61 @@
+<div th:replace="/header"></div>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Users</h1>
+                    
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3" sec:authorize="hasAuthority('ADMIN')">
+                        	<a th:href="@{registrarForm}" class="btn btn-primary" style="margin-right:20px;">Novo</a>
+                            <h6 class="m-0 font-weight-bold text-primary" style="display:inline-block;">Listagem de Usuários</h6>
+                            
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                        
+                                            <th>Name</th>
+                                            <th>Sobrenome</th>
+                                            <th>CPF</th>
+                                            <th>Senha</th>
+                                            <th>email</th>
+                                            <th>Ativo</th>
+                        
+                                        </tr>
+                                  </thead>
+                                   
+                                    <tbody>
+                              
+                                            <tr th:each="usuario : ${usuarios}">
+                                            
+                                            <td th:text="${usuario.nome}"></td>
+                                            <td th:text="${usuario.sobrenome}"></td>
+                                            <td th:text="${usuario.cpf}"></td>
+                                           	<td th:text="${usuario.password}"></td>
+                                           	<td th:text="${usuario.email}"></td>
+                                           	<td th:text="${usuario.ativo}"></td>
+                                            
+                                           	<td><a th:href="@{'/admin/editar/' + ${usuario.id}}" class="btn btn-warning">Editar</a></td>
+                                           	
+                                           
+                                            <td> <a th:href="@{/admin/excluir/{id}(id=${usuario.id})}" class="btn btn-danger">Desativar</a></td>
+											
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                      
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+<div th:replace="/footer"></div>

@@ -1,0 +1,52 @@
+<div th:replace="/header"></div>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+	                    <h1 class="h3 mb-2 text-gray-800">Cadastro de Usuarios</h1>
+						
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4" style="padding: 30px">
+                       <form method="POST" th:action="@{registrar}" th:object="${userForm}">
+						  <div class="form-group">
+						    <label for="exampleInputEmail1">Nome de Usuário</label>
+						    <input type="text" class="form-control" required id="nome" name="nome" th:field="*{nome}"   th:errorclass="is-invalid" onkeypress="return apenasLetras();"   aria-describedby="emailHelp" placeholder="Enter name user">
+						    
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputEmail1">Sobrenome</label>
+						    <input type="text" class="form-control" required id="sobrenome" name="sobrenome" th:field="*{sobrenome}" th:errorclass="is-invalid" onkeypress="return apenasLetras();" aria-describedby="emailHelp" placeholder="Enter name user">
+						    
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputEmail1">CPF</label>
+						    <input type="text" class="form-control" th:field="*{cpf}" required id="nome" name="nome" aria-describedby="emailHelp" th:errorclass="is-invalid" minlength="11" maxlength="11" onkeypress="return onlynumber();" placeholder="Enter name user">
+						    <div class="invalid-feedback" th:errors="*{cpf}"></div>
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputEmail1">Email</label>
+						    <input type="email" class="form-control" required id="nome" name="nome" aria-describedby="emailHelp" th:field="*{email}"  placeholder="Enter name user" th:errorclass="is-invalid" >
+						    
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputPassword1">Senha</label>
+						    <input type="password" class="form-control" required id="senha" th:field="*{password}" name="password" th:errorclass="is-invalid"  maxlength="10" placeholder="Enter Password">
+						    <small id="emailHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
+						  </div>
+						  
+						  <!--<div class="form-group">
+    						<label for="userType">Tipo</label>
+    						<select class="form-control" id="tipo" name="tipo">
+        					<option value="USER">Funcionário</option>
+       						<option value="ADMIN">Administrador</option>
+    						</select>
+							</div>-->
+						  <button type="submit" class="btn btn-primary">Submit</button>
+						</form>                    
+                	</div>
+               </div>
+                <!-- /.container-fluid -->
+<div th:replace="/footer"></div>

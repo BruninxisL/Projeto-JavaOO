@@ -1,0 +1,54 @@
+<div th:replace="/header"></div>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Comandas</h1>
+                    
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                        	<a th:href="@{gerarpedido}" class="btn btn-primary" style="margin-right:20px;">Novo Pedido</a>
+                        	
+                             <a th:href="@{/pedidos/listarOpcoes}" class="btn btn-primary">Recebidos</a>
+    						<a th:href="@{/pedidos/preparando}" class="btn btn-primary">Preparando</a>
+							<a th:href="@{/pedidos/cancelados}" class="btn btn-primary">Cancelados</a>
+							<a th:href="@{/pedidos/prontos}" class="btn btn-primary">Prontos</a>
+							<a th:href="@{/pedidos/finalizados}" class="btn btn-primary">Finalizados</a>
+                            <div class="card-body">
+                            <div class="table-responsive">
+                               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+								    <!-- Cabeçalho da tabela -->
+								    <thead>
+								        <tr>
+								            <th>Id</th>
+								            <th>Identificador</th>
+								            <th>Data Abertura</th>
+								            <th>Status</th>
+								            
+								        </tr>
+								    </thead>
+								    
+								    <tbody>
+								        
+								          <tr th:each="comanda, index : ${comandas}">
+                                            <td th:text="${comanda.id}" ></td>
+                                            <td th:text="${comanda.nome}"></td>
+                                            <td th:text="${datasAberturaFormatadas[__${index.index}__]}"></td>
+                                            <td th:text="${comanda.status}"></td>
+                                            <td><a th:href="@{'/pedidos/editar/' + ${comanda.id}}" class="btn btn-warning">Detalhes</a></td>
+								    </tbody>
+								</table>
+                      
+                            </div>
+                        </div>
+                        </div>
+                        
+                    
+
+                </div>
+                <!-- /.container-fluid -->
+<div th:replace="/footer"></div>

@@ -1,0 +1,55 @@
+<div th:replace="/header"></div>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Pratos</h1>
+                    
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                        	<a th:href="@{registrarForm}" class="btn btn-primary" style="margin-right:20px;">Novo</a>
+                            <h6 class="m-0 font-weight-bold text-primary" style="display:inline-block;">Listagem de Usuários</h6>
+                            
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                        	<th>Id</th>
+                                            <th>Nome</th>
+                                            <th>preco</th>
+                                            <th>Descrição</th>
+                        
+                                        </tr>
+                                    </thead>
+                                   
+                                    <tbody>
+                              
+                                            <tr th:each="prato : ${pratos}">
+                                            <td th:text="${prato.id}" ></td>
+                                            <td th:text="${prato.nome}"></td>
+                                           	<td th:text="${prato.preco}"></td>
+                                            <td th:text="${prato.descricao}"></td>
+                                            <td><a th:href="@{'/pratos/editar/' + ${prato.id}}" class="btn btn-warning">Editar</a></td>
+                                            
+                                            <td> <a th:href="@{/pratos/excluir/{id}(id=${prato.id})}" class="btn btn-danger">Excluir</a></td>
+
+
+											
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                      
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+<div th:replace="/footer"></div>

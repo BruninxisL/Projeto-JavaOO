@@ -1,0 +1,61 @@
+<div th:replace="/header"></div>
+
+
+
+<form method="POST" th:action="@{/pedidos/editar/{id}(id=${comanda.id})}">
+   
+    <div class="form-group">
+        <label for="nome">Identificador</label>
+        <input type="text" class="form-control" id="nome" th:value="${comanda.nome}" name="nome" required>
+    </div>
+     <div class="form-group">
+                    <label for="prato">Prato</label>
+                    <select class="form-control" id="prato" name="pratoId">
+                        <option th:each="prato : ${pratos}" th:value="${prato.id}" th:text="${prato.nome}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantidade">Quantidade</label>
+                    <input type="number" class="form-control" id="quantidade" name="quantidade" th:value="${itemComanda.quantidade}"required>
+                </div>
+                <div class="form-group">
+    				<label for="observacoes">Observações</label>
+    				<input type="text" class="form-control" id="observacoes" th:value="${itemComanda.observacoes}" name="observacoes">
+				</div>
+     <div class="form-group">
+    <label for="status">Status</label>
+    <select class="form-control" id="status" name="status" required>
+        <option th:each="status : ${statusList}"
+                th:value="${status}"
+                th:text="${status}" 
+                th:selected="${status == comanda.status}"></option>
+    </select>
+</div>
+   
+    <button type="submit" class="btn btn-primary">Alterar Pedido</button>
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal">Excluir</button>
+</form>
+
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Exclusão</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Tem certeza de que deseja excluir esta comanda?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <form method="POST" th:action="@{/pedidos/excluir/{id}(id=${comanda.id})}">
+                    <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="/footer"></div>

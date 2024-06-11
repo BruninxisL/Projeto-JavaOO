@@ -1,0 +1,45 @@
+<div th:replace="/header"></div>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+	                    <h1 class="h3 mb-2 text-gray-800">Cadastro de Produtos</h1>
+						
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4" style="padding: 30px">
+                       <form method="POST" th:action="@{/produtos/editarProduto/{id}(id=${produto.id})}">
+						  <div class="form-group">
+						    <label for="exampleInputEmail1">Nome do Produto</label>
+						    <input type="text" class="form-control" th:value="${produto.nome}"  required id="nome" name="nome" aria-describedby="emailHelp" placeholder="Enter name user">
+						    
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputPassword1">Quantidade</label>
+						    <input type="number" class="form-control" th:value="${produto.quantidade}" required id="quantidade" name="quantidade" placeholder="Enter Password">
+						    
+						  </div>
+							<div class="form-group">
+						        <label for="unidade_medida">Unidade de Medida</label>
+						        <select class="form-control" id="unidade_medida" name="unidadeMedida" required>
+						            <option th:each="unidadeMedida : ${T(com.example.AppPastelaria.model.UnidadeMedida).values()}"
+						                    th:value="${unidadeMedida}"
+						                    th:text="${unidadeMedida}"></option>
+						        </select>
+						    </div>
+    						 <div class="form-group">
+						    <label for="exampleInputPassword1">Preço de Custo</label>
+						    <input type="number" class="form-control"  th:value="${produto.preco_custo}" required id="preco_custo" name="preco_custo" placeholder="Enter Password">
+				
+						 	</div>
+						 	
+							</div>
+							</div>
+						  <button type="submit" class="btn btn-primary">Submit</button>
+						</form>                    
+                	</div>
+               </div>
+                <!-- /.container-fluid -->
+<div th:replace="/footer"></div>

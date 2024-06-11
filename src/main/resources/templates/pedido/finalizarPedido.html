@@ -1,0 +1,30 @@
+<div th:replace="/header"></div>
+<div id="itensPedido">
+    <h2>Itens do Pedido</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Preço Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${itensComanda}">
+                <td th:text="${item.prato_id.nome}"></td>
+                <td th:text="${item.quantidade}"></td>
+                <td th:text="${item.precoUnitario}"></td>
+                <td th:text="${item.quantidade * item.precoUnitario}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<form method="POST" th:action="@{/pedidos/finalizar}">
+    <div class="form-group">
+        <label for="nome">Identificador</label>
+        <input type="text" class="form-control" id="nome" th:value="${nome}" name="nome" required>
+    </div>
+    <button type="submit" class="btn btn-success">Finalizar pedido</button>
+</form>
+<div th:replace="/footer"></div>

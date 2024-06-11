@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gerar Pedido</title>
+    
+</head>
+<body>
+    <div th:replace="/header"></div>
+    <div class="container-fluid">
+        <h1 class="h3 mb-2 text-gray-800">Cadastro Comanda</h1>
+        <div class="card shadow mb-4" style="padding: 30px">
+            <form method="POST" th:action="@{/pedidos/adicionarItem}">
+         		<div th:if="${mensagem}" class="alert alert-success">
+  				  <p th:text="${mensagem}"></p>
+				</div>
+
+                <div class="form-group">
+                    <label for="prato">Prato</label>
+                    <select class="form-control" id="prato" name="pratoId">
+                        <option th:each="prato : ${pratos}" th:value="${prato.id}" th:text="${prato.nome}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantidade">Quantidade</label>
+                    <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+                </div>
+                <div class="form-group">
+    				<label for="observacoes">Observações</label>
+    				<textarea class="form-control" id="observacoes" name="observacoes"></textarea>
+				</div>
+                <button type="submit" class="btn btn-primary">Adicionar ao Pedido</button>
+                <a th:href="@{/pedidos/verificarPedido}" class="btn btn-success">Finalizar Pedido</a>
+            </form>
+            <hr>
+           
+        </div>
+    </div>
+    
+    
+    <div th:replace="/footer"></div>
+    
+   
+    	
+</body>
+</html>

@@ -1,0 +1,70 @@
+<div th:replace="/header"></div>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Estoque</h1>
+                    
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                        	<a th:href="@{/produtos/cadastrarProduto}" class="btn btn-primary" style="margin-right:20px;">Novo</a>
+                            <h6 class="m-0 font-weight-bold text-primary" style="display:inline-block;">Listagem de Produtos</h6>
+                            
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                        	<th>Id</th>
+                                            <th>Nome</th>
+                                            <th>Quantidade</th>
+                                            <th>Unidade de Medida</th>
+                                            <th>Preço</th>
+                                            
+                        
+                                        </tr>
+                                    </thead>
+                                   
+                                    <tbody>
+                              
+                                            <tr th:each="produto : ${produtos}">
+                                            <td th:text="${produto.id}" ></td>
+                                            <td th:text="${produto.nome}"></td>
+                                           	<td th:text="${produto.quantidade}"></td>
+                                            <td th:text="${produto.unidadeMedida}"></td>
+                                            <td th:text="${produto.preco_custo}"></td>
+                                           	<td><a th:href="@{'/produtos/editar/' + ${produto.id}}" class="btn btn-warning">Editar</a></td>
+                                           	
+                                           
+                                            <td> <a th:href="@{/produtos/excluir/{id}(id=${produto.id})}" class="btn btn-danger">Excluir</a></td>
+                                           <!--  <td><a href="#" th:onclick="'if(confirm(\'Confirma ?\')) { window.location.href = \'' + @{/estoque/{cod_produto}(cod_produto=${produto.cod_produto})} + '/excluir\' } '" class="btn btn-danger">Excluir</td>-->
+                                            
+
+											
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                      
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+                
+                
+                
+                
+                
+                
+               
+
+                </div>
+                <!-- /.container-fluid -->
+<div th:replace="/footer"></div>

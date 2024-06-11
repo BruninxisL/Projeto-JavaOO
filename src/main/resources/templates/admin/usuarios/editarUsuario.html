@@ -1,0 +1,46 @@
+<div th:replace="/header"></div>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+	                    <h1 class="h3 mb-2 text-gray-800">Cadastro de Usuarios</h1>
+						
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4" style="padding: 30px">
+                       <form method="POST" th:action="@{/admin/editarUser/{id}(id=${usuario.id})}">
+						  <div class="form-group">
+						    <label for="exampleInputEmail1">Nome de Usuário</label>
+						    <input type="text" class="form-control" required id="nome" name="nome"  th:value="${usuario.nome}"     onkeypress="return apenasLetras();" >
+						    
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputEmail1">Sobrenome</label>
+						    <input type="text" class="form-control" required id="sobrenome" name="sobrenome"  th:value="${usuario.sobrenome}"   onkeypress="return apenasLetras();" >
+						    
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputEmail1">CPF</label>
+						    <input type="text" class="form-control"  th:value="${usuario.cpf}"  required id="cpf" name="cpf"  minlength="11" maxlength="11" onkeypress="return onlynumber();" >
+						   
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputEmail1">Email</label>
+						    <input type="email" class="form-control" required id="email" name="email"  th:value="${usuario.email}"   >
+						    
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputPassword1">Senha</label>
+						    <input type="password" class="form-control" required id="senha" th:value="${usuario.password}" name="password" maxlength="10" placeholder="Enter Password">
+						    <small id="emailHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
+						  </div>
+						  
+					
+						  <button type="submit" class="btn btn-primary">Submit</button>
+						</form>                    
+                	</div>
+               </div>
+                <!-- /.container-fluid -->
+<div th:replace="/footer"></div>
